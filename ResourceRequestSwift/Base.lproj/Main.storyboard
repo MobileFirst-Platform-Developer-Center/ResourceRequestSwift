@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G08-Ji-x5v">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Resource Request-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ResourceRequestSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,69 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a tag:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ja-ke-2jy">
+                                <rect key="frame" x="20" y="77" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBd-Zb-1ve">
+                                <rect key="frame" x="134" y="73" width="381" height="30"/>
+                                <state key="normal" title="Tap to choose"/>
+                                <connections>
+                                    <action selector="openPicker" destination="BYZ-38-t0r" eventType="touchUpInside" id="VYM-jd-fwt"/>
+                                </connections>
+                            </button>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhg-Zx-IMw">
+                                <rect key="frame" x="20" y="376" width="560" height="216"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wro-gN-otd">
+                                <rect key="frame" x="523" y="73" width="57" height="30"/>
+                                <state key="normal" title="Request"/>
+                                <connections>
+                                    <action selector="sendRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hjm-cP-0e9"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pBd-Zb-1ve" firstAttribute="leading" secondItem="1ja-ke-2jy" secondAttribute="trailing" constant="8" id="DAo-cm-DJz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uhg-Zx-IMw" secondAttribute="trailing" id="J45-3o-33g"/>
+                            <constraint firstItem="1ja-ke-2jy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="Rrb-7X-vki"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="uhg-Zx-IMw" secondAttribute="leading" id="UPT-P4-O8P"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="1ja-ke-2jy" secondAttribute="leading" id="cih-Uj-zN4"/>
+                            <constraint firstItem="Wro-gN-otd" firstAttribute="leading" secondItem="pBd-Zb-1ve" secondAttribute="trailing" constant="8" id="idW-bf-oz0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uhg-Zx-IMw" secondAttribute="bottom" constant="8" id="s8m-Bj-Uh6"/>
+                            <constraint firstItem="pBd-Zb-1ve" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="9" id="sjs-Bs-15Q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wro-gN-otd" secondAttribute="trailing" id="x8N-tg-XPU"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Resource Request" id="ceS-Nn-0R4"/>
+                    <connections>
+                        <outlet property="openButton" destination="pBd-Zb-1ve" id="4hw-xP-F6i"/>
+                        <outlet property="picker" destination="uhg-Zx-IMw" id="T9L-Fs-joR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1343" y="661"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dcG-8Q-h8D">
+            <objects>
+                <navigationController id="G08-Ji-x5v" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R6k-ln-7tZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7ik-B2-74C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L4r-UY-RTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573" y="661"/>
         </scene>
     </scenes>
 </document>
