@@ -9,60 +9,68 @@
 import UIKit
 import IBMMobileFirstPlatformFoundation
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var inputFirstName: UITextField!
+    @IBOutlet weak var inputMiddleName: UITextField!
+    @IBOutlet weak var inputLastName: UITextField!
+    @IBOutlet weak var inputAge: UITextField!
+    @IBOutlet weak var inputHeight: UITextField!
+    @IBOutlet weak var inputDate: UITextField!
+    @IBOutlet weak var outputText: UITextView!
+    
 
-    @IBOutlet weak var picker: UIPickerView!
-    @IBOutlet weak var openButton: UIButton!
-    
-    var pickerData: [String] = [String]()
-    var selectedTag = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pickerData = ["MobileFirst_Platform", "MobileFirst_Playground", "Item 3", "Item 4", "Item 5", "Item 6"]
-        self.picker.dataSource = self;
-        self.picker.delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func openPicker() {
-        self.picker.hidden = false
-    }
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
 
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectedTag = pickerData[row]
-        self.openButton.setTitle(self.selectedTag, forState: .Normal)
-
-        self.picker.hidden = true
-    }
-    @IBAction func sendRequest(sender: UIButton) {
-        let request = WLResourceRequest(URL: NSURL(string: "/adapters/JavaHTTP/"), method: WLHttpMethodGet)
-        request.setQueryParameterValue(self.selectedTag, forName: "tag")
-        request.sendWithCompletionHandler { (response, error) -> Void in
+    @IBAction func submit(sender: UIButton) {
+        
+        //@PathParam
+        let url = NSURL(string: "/adapters/JavaAdapter/users/"
+                                + self.inputFirstName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                                + "/"
+                                + self.inputMiddleName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                                + "/"
+                                + self.inputLastName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+        
+        //Using POST
+        let request = WLResourceRequest(URL: url, method: WLHttpMethodPost)
+        
+        //@QueryParam
+        request.setQueryParameterValue(self.inputAge.text!, forName: "age")
+        
+        //@HeaderParam("Date")
+        request.setHeaderValue(self.inputDate.text!, forName: "Date")
+        
+        //@FormParam("height")
+        let formParams = ["height":self.inputHeight.text!]
+        
+        //Sending the request with Form parameters
+        request.sendWithFormParameters(formParams) { (response, error) -> Void in
             if(error == nil){
-                NSLog(response.description)
+                NSLog(response.responseText)
+                var resultText = ""
+                resultText += "Name = "
+                resultText += (response.responseJSON["first"] as! String) + " " + (response.responseJSON["middle"] as! String) + " " + (response.responseJSON["last"] as! String) + "\n"
+                resultText += "Age = " + (String(response.responseJSON["age"] as! Int)) + "\n"
+                resultText += "Height = " + (response.responseJSON["height"] as! String) + "\n"
+                resultText += "Date = " + (response.responseJSON["Date"] as! String) + "\n"
+                
+                self.outputText.text=resultText
             }
             else{
                 NSLog(error.description)
+                self.outputText.text = error.description
             }
         }
-        
     }
+    
 }
 
