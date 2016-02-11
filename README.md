@@ -9,7 +9,7 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/using-the-m
 
 1. From the command line, navigate to the project's root folder.
 2. Ensure the sample is registered in the MobileFirst Server by running the command: `mfpdev app register`.
-3. The sample uses the `JavaAdapter` contained in the Adapters Maven project. Use either Maven or MobileFirst Developer CLI to [build and deploy the adapter](../../adapters/creating-adapters/).
+3. The sample uses the `JavaAdapter` contained in the Adapters Maven project. Use either Maven or MobileFirst Developer CLI to [build and deploy the adapter](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
 4. To test or debug an adapter, see the [testing and debugging adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/testing-and-debugging-adapters) tutorial.
 5. Import the project to Xcode, and run the sample by clicking the **Run* button.
 
