@@ -10,5 +10,7 @@
 	<string>9080</string>
 	<key>wlServerContext</key>
 	<string>/mfp/</string>
+	<key>languagePreferences</key>
+	<string>en</string>
 </dict>
 </plist>

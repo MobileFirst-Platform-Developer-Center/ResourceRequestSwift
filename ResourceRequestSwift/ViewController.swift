@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         request.setQueryParameterValue(self.inputAge.text!, forName: "age")
         
         //@HeaderParam("Date")
-        request.setHeaderValue(self.inputDate.text!, forName: "Date")
+        request.setHeaderValue(self.inputDate.text!, forName: "birthdate")
         
         //@FormParam("height")
         let formParams = ["height":self.inputHeight.text!]
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
                 resultText += (response.responseJSON["first"] as! String) + " " + (response.responseJSON["middle"] as! String) + " " + (response.responseJSON["last"] as! String) + "\n"
                 resultText += "Age = " + (String(response.responseJSON["age"] as! Int)) + "\n"
                 resultText += "Height = " + (response.responseJSON["height"] as! String) + "\n"
-                resultText += "Date = " + (response.responseJSON["Date"] as! String) + "\n"
+                resultText += "Birthdate = " + (response.responseJSON["birthdate"] as! String) + "\n"
                 
                 self.outputText.text=resultText
             }
