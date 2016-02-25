@@ -1,16 +1,24 @@
-//
-//  ViewController.swift
-//  ResourceRequestSwift
-//
-//  Created by Nathan Hazout on 14/01/2016.
-//  Copyright © 2016 Sample. All rights reserved.
-//
+/**
+* Copyright 2016 IBM Corp.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 import UIKit
 import IBMMobileFirstPlatformFoundation
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var inputFirstName: UITextField!
     @IBOutlet weak var inputMiddleName: UITextField!
     @IBOutlet weak var inputLastName: UITextField!
@@ -18,7 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var inputHeight: UITextField!
     @IBOutlet weak var inputDate: UITextField!
     @IBOutlet weak var outputText: UITextView!
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +37,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
+
     @IBAction func submit(sender: UIButton) {
-        
+
         //@PathParam
         let url = NSURL(string: "/adapters/JavaAdapter/users/"
                                 + self.inputFirstName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -39,19 +47,19 @@ class ViewController: UIViewController {
                                 + self.inputMiddleName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                                 + "/"
                                 + self.inputLastName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
-        
+
         //Using POST
         let request = WLResourceRequest(URL: url, method: WLHttpMethodPost)
-        
+
         //@QueryParam
         request.setQueryParameterValue(self.inputAge.text!, forName: "age")
-        
+
         //@HeaderParam("Date")
         request.setHeaderValue(self.inputDate.text!, forName: "birthdate")
-        
+
         //@FormParam("height")
         let formParams = ["height":self.inputHeight.text!]
-        
+
         //Sending the request with Form parameters
         request.sendWithFormParameters(formParams) { (response, error) -> Void in
             if(error == nil){
@@ -62,7 +70,7 @@ class ViewController: UIViewController {
                 resultText += "Age = " + (String(response.responseJSON["age"] as! Int)) + "\n"
                 resultText += "Height = " + (response.responseJSON["height"] as! String) + "\n"
                 resultText += "Birthdate = " + (response.responseJSON["birthdate"] as! String) + "\n"
-                
+
                 self.outputText.text=resultText
             }
             else{
@@ -71,6 +79,5 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-}
 
+}
