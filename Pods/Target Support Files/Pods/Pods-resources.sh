@@ -58,11 +58,9 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "IBMMobileFirstPlatformFoundation/IBMMobileFirstPlatformFoundation/Resources/mfpclient.plist"
   install_resource "IBMMobileFirstPlatformFoundation/IBMMobileFirstPlatformFoundation/Resources/Localizations.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "IBMMobileFirstPlatformFoundation/IBMMobileFirstPlatformFoundation/Resources/mfpclient.plist"
   install_resource "IBMMobileFirstPlatformFoundation/IBMMobileFirstPlatformFoundation/Resources/Localizations.bundle"
 fi
 

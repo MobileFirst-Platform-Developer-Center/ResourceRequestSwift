@@ -22,10 +22,8 @@ FOUNDATION_EXPORT const unsigned char IBMMobileFirstPlatformFoundationVersionStr
 
 // In this header, you should import all the public headers of your framework using statements like #import <IBMMobileFirstPlatformFoundation/PublicHeader.h>
 
-
+#import <IBMMobileFirstPlatformFoundation/AccessToken.h>
 #import <IBMMobileFirstPlatformFoundation/BaseChallengeHandler.h>
-#import <IBMMobileFirstPlatformFoundation/BaseDeviceAuthChallengeHandler.h>
-#import <IBMMobileFirstPlatformFoundation/BaseProvisioningChallengeHandler.h>
 #import <IBMMobileFirstPlatformFoundation/ChallengeHandler.h>
 #import <IBMMobileFirstPlatformFoundation/OCLogger.h>
 #import <IBMMobileFirstPlatformFoundation/OCLogger+Constants.h>
@@ -36,20 +34,14 @@ FOUNDATION_EXPORT const unsigned char IBMMobileFirstPlatformFoundationVersionStr
 #import <IBMMobileFirstPlatformFoundation/WLCookieExtractor.h>
 #import <IBMMobileFirstPlatformFoundation/WLDelegate.h>
 #import <IBMMobileFirstPlatformFoundation/WLDeviceAuthManager.h>
-#import <IBMMobileFirstPlatformFoundation/WLEventSourceListener.h>
 #import <IBMMobileFirstPlatformFoundation/WLFailResponse.h>
-#import <IBMMobileFirstPlatformFoundation/WLOnReadyToSubscribeListener.h>
 #import <IBMMobileFirstPlatformFoundation/WLProcedureInvocationData.h>
 #import <IBMMobileFirstPlatformFoundation/WLProcedureInvocationResult.h>
-#import <IBMMobileFirstPlatformFoundation/WLPush.h>
-#import <IBMMobileFirstPlatformFoundation/WLPushOptions.h>
 #import <IBMMobileFirstPlatformFoundation/WLResourceRequest.h>
 #import <IBMMobileFirstPlatformFoundation/WLResponse.h>
 #import <IBMMobileFirstPlatformFoundation/WLResponseListener.h>
 #import <IBMMobileFirstPlatformFoundation/WLSecurityUtils.h>
 #import <IBMMobileFirstPlatformFoundation/WLSecurityCommonUtils.h>
-#import <IBMMobileFirstPlatformFoundation/WLSimpleDataSharing.h>
+#import <IBMMobileFirstPlatformFoundation/WLSecurityConstants.h>
 //#import <IBMMobileFirstPlatformFoundation/WLWatchConnectivityManager.h>
-#import <IBMMobileFirstPlatformFoundation/WLTrusteer.h>
-#import <IBMMobileFirstPlatformFoundation/WLUserCertAuth.h>
 //#import <IBMMobileFirstPlatformFoundation/WLCertManagerCommon.h>

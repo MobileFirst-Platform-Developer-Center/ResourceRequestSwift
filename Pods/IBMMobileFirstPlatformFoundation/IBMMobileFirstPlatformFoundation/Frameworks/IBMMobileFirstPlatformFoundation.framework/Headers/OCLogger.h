@@ -142,15 +142,6 @@ typedef enum {
  */
 -(void) metadata:(NSDictionary*) metadata fatal: (NSString*) text, ...;
 
-/**
- This method logs at ANALYTICS level.
- @param String message to be logged
- @param metadata Dictionary containing metadata to append to the log output
- @since IBM Worklight V7.1.0
- */
--(void) metadata:(NSDictionary*) metadata analytics: (NSString*) text, ...;
-
-
 //Static methods
 
 /**
@@ -239,12 +230,11 @@ typedef enum {
 +(void) setLevel: (OCLogType) level;
 
 /**
- Global setting: Turn automatic retrieval of configuration profiles from the server
- @param Boolean flag determining whether or not configuration profiles will be automatically retrieved from the server
- @since IBM Worklight V6.2.0
- @deprecated V6.3.0
+ Get and apply the configuration from the IBM MobileFirst Platform Server.  The configuration comes from the use of
+ the "Config Profiles" tab in the IBM MobileFirst Platform administrative console.
+ Note that this configuration will override the current configuration set on the device.
  */
-+(void) setAutoUpdateConfigFromServer: (BOOL) flag;
++(void) updateConfigFromServer;
 
 /**
  This method indicates that an uncaught exception was detected.  The indicator is cleared on successful send.

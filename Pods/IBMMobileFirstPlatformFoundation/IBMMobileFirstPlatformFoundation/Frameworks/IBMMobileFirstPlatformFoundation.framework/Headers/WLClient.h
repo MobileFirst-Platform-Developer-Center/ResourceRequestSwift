@@ -56,8 +56,6 @@ enum {
     //Challenge handlers
     NSMutableDictionary *challengeHandlers;
 	
-	// Cached access tokens map
-	NSMutableDictionary *wlAccessTokens;
     
     BOOL isInitialized;
 }
@@ -107,55 +105,7 @@ extern NSMutableDictionary *piggyBackData;
  */
 -(void) sendUrlRequest:(NSURLRequest *)request delegate:(id)delegate;
 
-/**
- * This method uses the connection properties and the application ID from the mfplient.plist file to initialize communication with the IBM MobileFirst Platform Server.
- * The server checks the validity of the application version.
- *
- * If the server returns a successful response, the <code>onSuccess</code> method is called. If an error occurs, the <code>onFailure</code> method is called.
- * @note This method must be called before any other WLClient method that calls the server, such as <code>invokeProcedure.</code>
- * @param delegate A class that conforms to the WLDelegate protocol.
- * @param cookieExtractor Optional, can be nil. Used to share the cookies between the native code and the web code in the app.
- */
--(void) wlConnectWithDelegate:(id <WLDelegate>)delegate cookieExtractor:(WLCookieExtractor *) cookieExtractor;
 
-/**
- * This method uses the connection properties and the application ID from the mfplient.plist file to initialize communication with the IBM MobileFirst Platform Server.
- * The server checks the validity of the application version.
- *
- * If the server returns a successful response, the <code>onSuccess</code> method is called. If an error occurs, the <code>onFailure</code> method is called.
- * @note This method must be called before any other WLClient method that calls the server, such as <code>invokeProcedure.</code>
- * @param delegate A class that conforms to the WLDelegate protocol.
- */
--(void) wlConnectWithDelegate:(id <WLDelegate>)delegate;
-
-/**
- * This method uses the connection properties and the application ID from the mfplient.plist file to initialize communication with the IBM MobileFirst Platform Server.
- * The server checks the validity of the application version.
- * This method accepts a "timeout" key in its options parameter -  (NSNumber) Number of milliseconds to wait for the server response before the request times out.
- * 
- * If the server returns a successful response, the <code>onSuccess</code> method is called. If an error occurs, the <code>onFailure</code> method is called.
- * @note This method must be called before any other WLClient method that calls the server, such as <code>invokeProcedure.</code>
- * @param delegate A class that conforms to the WLDelegate protocol.
- * @param options Optional, can be nil. Used to set the timeout while connecting to the server and/or to set the application userId which is used by Push service. In this dictionary the user puts key "timeout" (milliseconds) to set the timeout or the key "appUserId" (NSString) to set the application UserId.
- */
--(void) wlConnectWithDelegate:(id <WLDelegate>)delegate options:(NSDictionary *)options;
-
-/**
- * Invokes an adapter procedure. This method is asynchronous. 
- * The response is returned to the callback functions of the provided delegate.
- * If the call succeeds, <code>onSuccess</code> is called. If it fails, <code>onFailure</code> is called.
- * 
- * Example:
- * The following code invokes a procedure "getStoriesFiltered" in the adapter "RSSReader" using a parameter "Africa":
- * 
- * 		WLProcedureInvocationData *myInvocationData = [[WLProcedureInvocationData alloc] initWithAdapterName:@"RSSReader" procedureName:@"getStoriesFiltered"];
- * 		myInvocationData.parameters = [NSArray arrayWithObjects:@"Africa", nil];
- * 
- * @param invocationData The invocation data for the procedure call.
- * @param delegate The delegate object that is used for the onSuccess and onFailure callback methods.
- *
- *
- */
 -(void) invokeProcedure:(WLProcedureInvocationData *)invocationData withDelegate:(id <WLDelegate>)delegate;
 
 /**
@@ -329,6 +279,16 @@ extern NSMutableDictionary *piggyBackData;
  * @param certificateFilename the name of the certificate file
  **/
 -(void) pinTrustedCertificatePublicKeyFromFile:(NSString*) certificateFilename;
+
+/*
+ * Sets the device's Display name in the server (calls update registration)
+ */
+-(void) setDeviceDisplayName:(NSString*)deviceDisplayName WithCompletionHandler:(void(^)(NSError* error))completionHandler;
+
+/*
+ * Get the Display name of this device from the MFP server
+ */
+-(void) getDeviceDisplayNameWithCompletionHandler:(void(^)(NSString *deviceDisplayName , NSError *error))completionHandler;
 
 /**
  * Specifies default request time out.
