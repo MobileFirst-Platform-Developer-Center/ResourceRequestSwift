@@ -11,13 +11,12 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/using-the-m
 1. Use either Maven, MobileFirst CLI or your IDE of choice to build and deploy the `JavaAdapter` adapter.
 
   The `JavaAdapter` adapter can be found in https://github.com/MobileFirst-Platform-Developer-Center/Adapters/tree/release80.
-2. From the command line, navigate to the project's root folder.
-3. Ensure the sample is registered in the MobileFirst Server by running the command: `mfpdev app register`.
-4. Import the project to Xcode, and run the sample by clicking the **Run** button.
+  
+2. From the command line, navigate to the project's root folder and run the following commands:
+    - `pod update` followed by `pod install` - to add the MobileFirst SDK.
+    - `mfpdev app register` - to register the application in the MobileFirst Server
 
-Resource Request adapter: https://github.com/MobileFirst-Platform-Developer-Center/Adapters/tree/release80
-
-> **Tip:** you can update the bundled SDK by running the command `pod update` from the project's root folder.
+3. Import the project to Xcode using the .xcworkspace file, and run the sample by clicking the **Run** button.
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
