@@ -4,7 +4,7 @@ IBM MobileFirst Platform Foundation
 A sample application demonstrating the use to the WLResourceRequest API in Swift.
 
 ### Tutorials
-https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/using-the-mfpf-sdk/resource-request/ios
+https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/application-development/resource-request/ios
 
 ### Usage
 
