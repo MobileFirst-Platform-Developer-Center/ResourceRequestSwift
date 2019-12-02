@@ -15,7 +15,7 @@
 */
 
 import UIKit
-import IBMMobileFirstPlatformFoundation
+import IBMMobileFoundationSwift
 
 class ViewController: UIViewController {
 
@@ -46,35 +46,35 @@ class ViewController: UIViewController {
                                 + "/"
                                 + self.inputMiddleName.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                                 + "/"
-                                + self.inputLastName.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
+            + self.inputLastName.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
 
         //Using POST
-        let request = WLResourceRequest(url: url, method: WLHttpMethodPost)
+        let request = WLResourceRequestSwift(url: url!, method: WLResourceRequestSwift.WLHttpMethodPost)
 
         //@QueryParam
-        request?.setQueryParameterValue(self.inputAge.text!, forName: "age")
+        request.setQueryParameterValue(parameterValue: self.inputAge.text!, forName: "age")
 
         //@HeaderParam("Date")
-        request?.setHeaderValue(self.inputDate.text! as NSObject!, forName: "birthdate")
+        request.setHeaderValue(value: self.inputDate.text! as NSObject, forName: "birthdate")
 
         //@FormParam("height")
         let formParams = ["height":self.inputHeight.text!]
 
         //Sending the request with Form parameters
-        request?.send(withFormParameters: formParams) { (response, error) -> Void in
+        request.send(withFormParameters: formParams) { (response, error) -> Void in
             if(error == nil){
-                NSLog((response?.responseText)!)
+                print((response?.responseText)!)
                 var resultText = ""
                 resultText += "Name = "
-                resultText += (response?.responseJSON["first"] as! String) + " " + (response?.responseJSON["middle"] as! String) + " " + (response?.responseJSON["last"] as! String) + "\n"
-                resultText += "Age = " + (String(response?.responseJSON["age"] as! Int)) + "\n"
-                resultText += "Height = " + (response?.responseJSON["height"] as! String) + "\n"
-                resultText += "Birthdate = " + (response?.responseJSON["birthdate"] as! String) + "\n"
+                resultText += (response?.responseJSON!["first"] as! String) + " " + (response?.responseJSON!["middle"] as! String) + " " + (response?.responseJSON!["last"] as! String) + "\n"
+                resultText += "Age = " + (String(response?.responseJSON!["age"] as! Int)) + "\n"
+                resultText += "Height = " + (response?.responseJSON!["height"] as! String) + "\n"
+                resultText += "Birthdate = " + (response?.responseJSON!["birthdate"] as! String) + "\n"
 
                 self.outputText.text=resultText
             }
             else{
-                NSLog(error.debugDescription)
+                print(error.debugDescription);
                 self.outputText.text = error.debugDescription
             }
         }
